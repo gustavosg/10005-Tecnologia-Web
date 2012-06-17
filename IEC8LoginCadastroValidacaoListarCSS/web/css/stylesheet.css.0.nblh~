@@ -1,0 +1,73 @@
+/* CSS Definitions:
+ * 
+ * id: o seletor id é usado para especificar o estilo de um unico elemento.
+ *     O seletor id usa o atributo id do elemento XHTML e é definido através
+ *     do caracter "#".
+ *
+ * class: o seletor class é usado para especificar o estilo de um grupo de elementos.
+ *        Ao contrário do seletor id, o seletor de classe é mais comumente usado
+ *        para vários elementos. Isto pemite aplicar um dado estilo a um conjunto de
+ *        elementos XHTML da mesma classe. O seletor de classe usa o atributo  
+ *        class do elemento XHTML e é definido atraves do caracter ".".
+ */
+
+/*------------------------------ 
+ Estilos para elementos XHTML: 
+--------------------------------*/
+body {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: smaller;
+  padding: 50px;
+  color: #555;
+  width: 650px;
+}
+
+h1 {
+  font-family: Verdana, Arial, sans-serif;
+  letter-spacing: 6px;
+  font-size: 1.6em;
+  color: #be7429;
+  font-weight: bold;
+  margin-left: 300px;
+  margin-right: 65px;
+}
+
+/*------------------------------ 
+ Estilos para seletores "id": 
+--------------------------------*/
+#fundo_padrao {
+  width: 550px;
+  padding: 10px;
+  background-color: #c5e7e0;
+  font-family: Verdana, Arial, sans-serif;
+  border: solid;
+  border-top-color: lightslategrey;
+  border-bottom-color: lightslategrey;
+  border-left-color: lightslategrey;
+  border-right-color: lightslategrey;
+  z-index: 1;
+	margin-left: 300px;
+	margin-right: 95px;
+  text-align: left;
+  -moz-border-radius: 1.6em;
+}
+
+/*------------------------------ 
+ Estilos para seletores "class": 
+--------------------------------*/
+.entradaPadrao {
+  color: gray
+}
+
+.botao {
+  font-family: Verdana, Arial, sans-serif;
+  color: #333;
+}
+
+.botao:hover{
+  font-family: Verdana, Arial, sans-serif;
+  color: white;
+  background-color: lightslategrey; 
+}
+
+  

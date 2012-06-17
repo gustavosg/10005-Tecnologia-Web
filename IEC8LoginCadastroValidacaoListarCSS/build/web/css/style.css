@@ -1,0 +1,54 @@
+root { 
+    display: block;
+}
+
+body{
+    font-family: Verdana, Arial, sans-serif;
+    font-size:smaller;
+    padding:50px;
+    color: #666;
+    width:650px;
+}
+
+h1 {
+    font-family: Verdana, Arial, sans-serif;
+    letter-spacing: normal;
+    -moz-animation: alternate;
+    -moz-border-radius: 20px;
+    color: gray;
+    text-align: center;
+}
+
+#windowBackground{
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 1.2em;
+    border-color: green;
+    marquee-direction: forward;
+    marquee-loop: infinite;
+    border: thin solid;
+    border-radius: 4em;
+    width: 40%;
+    padding-bottom: 5%;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    background-color: aqua;
+    display: blink;
+}
+
+#windowDown{
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 1.2em;
+    border-color: green;
+    marquee-direction: forward;
+    marquee-loop: infinite;
+    border: thin solid;
+    border-radius: 4em;
+    width: 40%;
+    padding-bottom: 5%;
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+    background-color: aqua;
+    display: blink;
+}

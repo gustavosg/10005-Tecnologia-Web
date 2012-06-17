@@ -1,0 +1,27 @@
+<!--<%-- 
+Document   : index
+Created on : 05/06/2012, 21:26:38
+Author     : Gustavo
+--%>-->
+
+<!-- <%@page contentType="text/html" pageEncoding="ISO-8859-1"%> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        
+        <title>JSP Page</title>
+        <script type="text/javascript" src="lib/functions.js" ></script>
+    </head>
+    <body>
+        <form name="form" method="post">
+            <button onclick="somaValores()">Clique aqui para somar</button> <br/>
+            <button onclick="subtraiValores()">Clique aqui para subtrair</button> <br/>
+            <button onclick="multiplicaValores()">Clique aqui para multiplicar</button><br/>
+            <button onclick="divideValores()">Clique aqui para dividir</button><br />
+            
+            <label>Digite seu nome:</label>
+            <input type="text"/>
+        </form>
+    </body>
+</html>

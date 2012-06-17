@@ -10,29 +10,40 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <script type="text/javascript"src="functions/jquery.js"></script>
-        
         <title>JSP Page</title>
     </head>
-    <body>
+    <body onload="document.getElementById('Nome').focus()">
         <form>
-        <label>Nome:</label>
-        <input type="text" id="Nome"  /> <br />
-        <label>Endereço</label>
-        <input type="text" id="Endereco" /><br />
-        <button type="submit" value="Enviar" id="Enviar" >Enviar</button>
-        <script type="text/javascript" >
-            $(document).ready(function() {
-                
-              $("#Enviar").click(
-                function(){
-                    if ($("#Nome:empty") )
-                        alert("Campo nome vazio");
-                    if ($("#Endereco:empty"))
-                        alert("Campo endereço vazio");
-                })
-            });
-            
-        </script>
+            <label>Nome:</label>
+            <input type="text" id="Nome" value="sexo" /><br />
+            <label>Endereço</label>
+            <input type="text" id="Endereco" value="Endereco"/><br />
+            <button type="submit" value="Enviar" id="Enviar" >Enviar</button>
+            <input type="hidden" id="dictionary" value="sexo, vagina" ></input>
+
+            <script type="text/javascript" >
+                $(document).ready(function() {
+                    
+                    $("#Enviar").click(
+                    function(){
+                        if ($("#Nome").val() == "" )
+                            alert("Campo nome vazio");
+                        //                        if ($("#Endereco:empty").val() == "")
+                        //                            alert("Campo endereço vazio");
+                        alert(document.getElementById('Nome').value);
+                        var word = document.getElementById('dictionary').value;
+                        alert(word);
+                        for (var i = 0; i <= word.length; i++ ){
+                            alert(word[i]);
+                            if ($("#Nome").val() == word[i])
+                            {
+                                alert("Campo não pode conter esta palavra");
+                            }
+                        }
+                    })
+                });
+            </script>
+
         </form>
     </body>
 </html>

@@ -14,7 +14,7 @@
     <body>
         <table>
             <tr>
-                <td></td>
+                <td><input type="checkbox" id="" value="O" ></input> </td>
                 <td></td>
                 <td></td>
             </tr>

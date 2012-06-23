@@ -16,27 +16,32 @@
     <body>
         <form name="formTTT">
             <table border="2" rules="all">
-                <tr>
-                    <td><input type="button" id="button1" value="" onclick="disableThis (this)"></input> </td>
-                    <td><input type="button" id="button2" value="" onclick="disableThis(this)"></input> </td>
-                    <td><input type="button" id="button3" value=""></input> </td>
+                <tr id="111">
+                    <td id="td1"><input type="button" id="1" value=""></input> </td>
+                    <td id="td2"><input type="button" id="2" value=""></input> </td>
+                    <td id="td3"><input type="button" id="3" value=""></input> </td>
                 </tr>
-                <tr>
-                    <td><input type="button" id="button4" value=""></input> </td>
-                    <td><input type="button" id="button5" value=""></input> </td>
-                    <td><input type="button" id="button6" value=""></input> </td>
+                <tr id="222">
+                    <td id="td4"><input type="button" id="4" value=""></input> </td>
+                    <td id="td5"><input type="button" id="5" value=""></input> </td>
+                    <td id="td6"><input type="button" id="6" value=""></input> </td>
                 </tr>
-                <tr>
-                    <td><input type="button" id="button7" value=""></input> </td>
-                    <td><input type="button" id="button8" value=""></input> </td>
-                    <td><input type="button" id="button9" value=""></input> </td>
+                <tr id="333">
+                    <td id="td7"><input type="button" id="7" value=""></input> </td>
+                    <td id="td8"><input type="button" id="8" value=""></input> </td>
+                    <td id="td9"><input type="button" id="9" value=""></input> </td>
                 </tr>
             </table>
+            <br />
+            <input type="button" id="cleanAll" value="Limpar todos os botoes"></input>
+            <br />
 
             <!-- Jogador atual -->
             <label>Vez do jogador: </label>
             <input type="label" id="player" value="O"></input>
+            <br />
 
+            <!-- Área de Debug -->
             <label>Debug:</label>
             <table border="2" rules="all">
                 <tr>
@@ -58,43 +63,65 @@
 
             <script type="text/javascript">
                 $(document).ready(function(){
-                    //var arr = [1,2,3,4,5,6,7,8,9];
-                    $("#button1").click(function(){
-                        attrValue("#button1");
+
+                    game = ["","","","","","","","","" ];
+                    // guarda se teve alguma vitória
+                    victory = false;
+                    
+                    // Tipos de vitória possível dentro de um tabuleiro de Jogo da Velha
+                    victoryTypes=[ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7] ];
+
+                    // @ToDo ver link: http://thingsilearned.com/2009/06/02/tictactoe-in-jquery/
+
+                    $("#1").click(function(){
+                        nextTurn("#1");
+                        debugValue(this.id, ($(this).val())) ;
                     });
-                    $("#button2").click(function(){
-                        attrValue("#button2");
+                    $("#2").click(function(){
+                        nextTurn("#2");
                     });
-                    $("#button3").click(function(){
-                        attrValue("#button3");
+                    $("#3").click(function(){
+                        nextTurn("#3");
                     });
-                    $("#button4").click(function(){
-                        attrValue("#button4");
+                    $("#4").click(function(){
+                        nextTurn("#4");
                     });
-                    $("#button5").click(function(){
-                        attrValue("#button5");
+                    $("#5").click(function(){
+                        nextTurn("#5");
                     });
-                    $("#button6").click(function(){
-                        attrValue("#button6");
+                    $("#6").click(function(){
+                        nextTurn("#6");
                     });
-                    $("#button7").click(function(){
-                        attrValue("#button7");
+                    $("#7").click(function(){
+                        nextTurn("#7");
                     });
-                    $("#button8").click(function(){
-                        attrValue("#button8");
+                    $("#8").click(function(){
+                        nextTurn("#8");
                     });
-                    $("#button9").click(function(){
-                        attrValue("#button9");
+                    $("#9").click(function(){
+                        nextTurn("#9");
                         
                     });
-                   
+                    
+                    /**
+                     * faz a limpeza de todos os campos da tela
+                     */
+                    
+                    if ($("#cleanAll").click(function(){
+                        var buttonName = "#";
+                        var inputs = document.getElementsByTagName("input");
+                        for (var i = 1; i<=inputs.length; i++){
+                            buttonName = "#"+i;
+                            ($(buttonName).val(""));
+                        }
+                    }))
+                  
+                    /**
+                     * Função que atribui o valor ao evento chamado.
+                     * $param = objeto passado para receber tratamento.
+                     */
+                    function nextTurn(param){
                  
-                 /**
-                  * Função que atribui o valor ao evento chamado.
-                  * 
-                  * $param = objeto passado para receber tratamento.
-                  */
-                 function attrValue(param){
                         if ($(param).val() == "")
                         {
                             // guarda qual é o turno do jogador:
@@ -105,9 +132,32 @@
                                 playerTurn = "O";
                             ($(param).val(playerTurn));
                             ($("#player").val(playerTurn));
-                        
+                            ($(param).disabled());
                         }
-                    }  
+                    }
+                    
+                    function debugValue(param, val){
+                        var valorJogador = 0;
+                        alert("parametro: " + param + " valor: " + val);
+                        var linha = [0, 0, 0];
+                        var coluna = [0, 0, 0];
+                        if (param < 4)
+                            linha = [param][val];
+                        
+                        alert(linha);
+                    
+                        var field = "#debug"+param;
+                        //alert("Linha: "+ linha + " coluna" + coluna);
+                    
+                        ($(field).val(val));
+                    }
+                    
+                    function endGame(){
+                        if (this.victory == "Velha")
+                            ($("#player").val("Deu jogo da velha!"));
+                        else
+                            ($("#player").val("O jogador "+ ($("#player")).val() + " ganhou!"));
+                    }
                 });
             
             </script>

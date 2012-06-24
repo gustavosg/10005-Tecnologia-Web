@@ -41,13 +41,6 @@
             <input type="label" id="player" value="O" disabled="true"></input>
             <br />
 
-            <!--             Área de Debug 
-                        <label>Debug:</label>
-                        <input type="text" id="debug" value=""></input>
-                        <br />
-                        <label>Victory:</label>
-                        <input type="text" id="victoryLabel" value=""></input>-->
-
             <script type="text/javascript">
                 $(document).ready(function(){
 
@@ -106,7 +99,7 @@
                      * Clean fields and board game. Also, tells than there's no victory yet.
                      */
                     if ($("#cleanAll").click(function(){
-                        this.game = ["","","","","","","","","" ];
+                        game = ["","","","","","","","","" ];
                         var buttonName = "#";
                         var inputs = document.getElementsByTagName("input");
                         for (var i = 0; i<=inputs.length; i++){
@@ -114,7 +107,6 @@
                             ($(buttonName).val(""));
                         }
                         victory = false;
-                        
                     }))
                   
                     /**

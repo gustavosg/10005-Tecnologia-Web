@@ -1,7 +1,7 @@
 <%-- 
     Document   : TicTacToe
     Created on : 17/06/2012, 17:58:05
-    Author     : Gustavo
+    Author     : Gustavo Souza Gonçalves 
 --%>
 
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
@@ -38,61 +38,72 @@
 
             <!-- Jogador atual -->
             <label>Vez do jogador: </label>
-            <input type="label" id="player" value="O"></input>
+            <input type="label" id="player" value="O" disabled="true"></input>
             <br />
 
-            <!-- Área de Debug -->
-            <label>Debug:</label>
-            <input type="text" id="debug" value=""></input>
-            <br />
-            <label>Victory:</label>
-            <input type="text" id="victoryLabel" value=""></input>
+            <!--             Área de Debug 
+                        <label>Debug:</label>
+                        <input type="text" id="debug" value=""></input>
+                        <br />
+                        <label>Victory:</label>
+                        <input type="text" id="victoryLabel" value=""></input>-->
 
             <script type="text/javascript">
                 $(document).ready(function(){
 
-                    // Definindo variável para jogador
-                    var player = "";
-                    var result = "";
+                    // Fields Region
+                    
+                    // Initializing player                    
+                    if ($("#player").val() == ""){
+                            ($("#player").val("X"));
+                        }
+                    
+                    // Defining player
+                    var player = "X";
 
+                    // Types of victory. Represents which fields is a win situation
+                    victoryTypes = [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
+
+                    // Start the board with no field checked
                     game = ["","","","","","","","","" ];
                     
-                    // guarda se teve alguma vitória
+                    // Initializes with no victory
                     victory = false;
 
-                    // @ToDo ver link: http://thingsilearned.com/2009/06/02/tictactoe-in-jquery/
+                    // End Fields Region
 
-                    if (!victory){
-                        $("#0").click(function(){
-                            nextTurn("#0");
-                        });
-                        $("#1").click(function(){
-                            nextTurn("#1");
-                        });
-                        $("#2").click(function(){
-                            nextTurn("#2");
-                        });
-                        $("#3").click(function(){
-                            nextTurn("#3");
-                        });
-                        $("#4").click(function(){
-                            nextTurn("#4");
-                        });
-                        $("#5").click(function(){
-                            nextTurn("#5");
-                        });
-                        $("#6").click(function(){
-                            nextTurn("#6");
-                        });
-                        $("#7").click(function(){
-                            nextTurn("#7");
-                        });
-                        $("#8").click(function(){
-                            nextTurn("#8");
-                        });
-                    }
+                    // Methods and Functions Region
+                    
+                    $("#0").click(function(){
+                        nextTurn("#0");
+                    });
+                    $("#1").click(function(){
+                        nextTurn("#1");
+                    });
+                    $("#2").click(function(){
+                        nextTurn("#2");
+                    });
+                    $("#3").click(function(){
+                        nextTurn("#3");
+                    });
+                    $("#4").click(function(){
+                        nextTurn("#4");
+                    });
+                    $("#5").click(function(){
+                        nextTurn("#5");
+                    });
+                    $("#6").click(function(){
+                        nextTurn("#6");
+                    });
+                    $("#7").click(function(){
+                        nextTurn("#7");
+                    });
+                    $("#8").click(function(){
+                        nextTurn("#8");
+                    });
+                    
                     /**
-                     * faz a limpeza de todos os campos da tela e do vetor que armazena quem fez as jogadas.
+                     * Clean fields and board game. Also, tells than there's no victory yet.
                      */
                     if ($("#cleanAll").click(function(){
                         this.game = ["","","","","","","","","" ];
@@ -102,103 +113,95 @@
                             buttonName = "#"+i;
                             ($(buttonName).val(""));
                         }
+                        victory = false;
                         
-                        debugValue();
                     }))
                   
                     /**
-                     * Função que atribui o valor ao evento chamado.
-                     * $param = objeto passado para receber tratamento.
+                     * Attributes value to call button
+                     * $param = assignature's object
                      */
                     function nextTurn(param){
-                        if ($(param).val() == "")
+                        if (($(param).val() == "") && !victory)
                         {
-                            // guarda qual é o turno do jogador:
-                            
-                            if ($("#player").val() == "O")
-                                player= "X";
-                            else
-                                player= "O";
-                            ($(param).val(player));
+                            // who's actual player
                             ($("#player").val(player));
-                            
-                            //Informa qual é o próximo jogador.
+                        
+                            if ($("#player").val() == "O")
+                                player = "X";
+                            else
+                                player = "O";
+
+                            //assign player
+                            ($(param).val(player));
+                          
+                            //assign player into the board
                             var value = param.replace("#", "");
                             playerMove(value);
+                              
+                            // Check if there's a winner
+                            this.player = hasWinner();
+                            checkEndGame();
                             
-                            debugValue();
-                            // Seta se já teve ganhador:
-                            
-                            result = hasWinner();
-                            // Verifica se já teve um ganhador, e informa quem foi.
-                            if (this.victory)
-                                this.endGame();
                         }
                     }
                     
                     /**
-                     * Verifica se é possível do jogador realizar a jogada.
+                     * Check if player can make next move on the board
                      */
                     function playerMove(id){
                         if (!this.game[id] && !this.victory) 
                             this.game[id] = player;
                     }
                     
-                    // Tipos de vitória possível dentro de um tabuleiro de Jogo da Velha
-                    victoryTypes: [ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
-                    
                     /**
-                     * Verifica se já teve um ganhador.
+                     * Check if there's a winner
                      */
                     function hasWinner(){
-                        for (value in this.victoryTypes)
-                        {
-                            var search = this.victoryTypes[value];
-                            var found = this.game[search[0]] + this.game[search[1]] + this.game[search[2]];
-                            
-                            alert(found);
-                            if (found == "XXX")
-                                return "X";
-                            
-                            else if (found == "OOO")
-                                return "O";
-                            
-                            this.victory = true;
-                        }
-                        
-                        // verifica se todos os campos foram preenchidos, se sim, então foi um jogo da velha.
+                        // if every board field is checked, then its an old lady game (Tic Tac Toe!)
                         var center = 0;
                         for (s in this.game) {
                             if (this.game[s]) 
                                 center+=1; 
                         }
                         if (center == 9) {
-                            this.result = "Velha";  
-                            endGame();
+                            return "Velha";
+                            checkEndGame();
+                        }
+                        
+                        for (value in victoryTypes)
+                        {
+                            var search = this.victoryTypes[value];
+                            var found = this.game[search[0]] + this.game[search[1]] + this.game[search[2]];
+                            
+                            if (found == "XXX")
+                            {
+                                this.victory = true;
+                                return "X";
+                                checkEndGame();
+                            }
+                            else if (found == "OOO")
+                            {
+                                this.victory = true;
+                                return "O";
+                                checkEndGame();
+                            }
                         }
                     }
                     
                     /**
-                     * Verifica se ainda é possível executar o jogo.
+                     * End this TTT game
                      */
-                    function endGame(){
-                        if (this.result == "Velha"){
-                            ($("#player").val("Deu jogo da velha!"));
-                            this.victory = true;
-                        }
-                        else{
-                            ($("#player").val("O jogador "+ ($("#player")).val() + " ganhou!"));
-                            this.victory = true;
-                        }
+                    function checkEndGame(){
+                        if (this.player.toString() == "Velha")
+                            result = "Deu jogo da velha!";
+                        else
+                            result = "O jogador "+ this.player.toString() + " ganhou!";
+                        ($("#player").val(result));
+                        alert(result);
                     }
                     
-                    /**
-                     *Faz o debug de valores:
-                     *
-                     */
-                    function debugValue(){
-                        ($("#debug").val(game));
-                    }
+                    // End Region Methods and Functions 
                 });
             
             </script>

@@ -16,20 +16,20 @@
     <body>
         <form name="formTTT">
             <table border="2" rules="all">
-                <tr id="111">
-                    <td id="td1"><input type="button" id="1" value=""></input> </td>
-                    <td id="td2"><input type="button" id="2" value=""></input> </td>
-                    <td id="td3"><input type="button" id="3" value=""></input> </td>
+                <tr >
+                    <td id="td1"><input type="button" id="0" value=""></input> </td>
+                    <td id="td2"><input type="button" id="1" value=""></input> </td>
+                    <td id="td3"><input type="button" id="2" value=""></input> </td>
                 </tr>
-                <tr id="222">
-                    <td id="td4"><input type="button" id="4" value=""></input> </td>
-                    <td id="td5"><input type="button" id="5" value=""></input> </td>
-                    <td id="td6"><input type="button" id="6" value=""></input> </td>
+                <tr >
+                    <td id="td4"><input type="button" id="3" value=""></input> </td>
+                    <td id="td5"><input type="button" id="4" value=""></input> </td>
+                    <td id="td6"><input type="button" id="5" value=""></input> </td>
                 </tr>
-                <tr id="333">
-                    <td id="td7"><input type="button" id="7" value=""></input> </td>
-                    <td id="td8"><input type="button" id="8" value=""></input> </td>
-                    <td id="td9"><input type="button" id="9" value=""></input> </td>
+                <tr >
+                    <td id="td7"><input type="button" id="6" value=""></input> </td>
+                    <td id="td8"><input type="button" id="7" value=""></input> </td>
+                    <td id="td9"><input type="button" id="8" value=""></input> </td>
                 </tr>
             </table>
             <br />
@@ -43,39 +43,29 @@
 
             <!-- Área de Debug -->
             <label>Debug:</label>
-            <table border="2" rules="all">
-                <tr>
-                    <td><input type="text" id="debug1" value=""></input> </td>
-                    <td><input type="text" id="debug2" value=""></input> </td>
-                    <td><input type="text" id="debug3" value=""></input> </td>
-                </tr>
-                <tr>
-                    <td><input type="text" id="debug4" value=""></input> </td>
-                    <td><input type="text" id="debug5" value=""></input> </td>
-                    <td><input type="text" id="debug6" value=""></input> </td>
-                </tr>
-                <tr>
-                    <td><input type="text" id="debug7" value=""></input> </td>
-                    <td><input type="text" id="debug8" value=""></input> </td>
-                    <td><input type="text" id="debug9" value=""></input> </td>
-                </tr>
-            </table>
+            <input type="text" id="debug" value=""></input>
 
             <script type="text/javascript">
                 $(document).ready(function(){
 
+                    // Definindo variável para jogador
+                    var player ;
+
                     game = ["","","","","","","","","" ];
+                    
                     // guarda se teve alguma vitória
                     victory = false;
                     
                     // Tipos de vitória possível dentro de um tabuleiro de Jogo da Velha
-                    victoryTypes=[ [1,2,3], [4,5,6], [7,8,9], [1,4,7], [2,5,8], [3,6,9], [1,5,9], [3,5,7] ];
+                    victoryTypes=[ [0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6] ];
 
                     // @ToDo ver link: http://thingsilearned.com/2009/06/02/tictactoe-in-jquery/
 
+                    $("#0").click(function(){
+                        nextTurn("#0");
+                    });
                     $("#1").click(function(){
                         nextTurn("#1");
-                        debugValue(this.id, ($(this).val())) ;
                     });
                     $("#2").click(function(){
                         nextTurn("#2");
@@ -98,19 +88,15 @@
                     $("#8").click(function(){
                         nextTurn("#8");
                     });
-                    $("#9").click(function(){
-                        nextTurn("#9");
-                        
-                    });
                     
                     /**
-                     * faz a limpeza de todos os campos da tela
+                     * faz a limpeza de todos os campos da tela e do vetor que armazena quem fez as jogadas.
                      */
-                    
                     if ($("#cleanAll").click(function(){
+                        this.game = ["","","","","","","","","" ];
                         var buttonName = "#";
                         var inputs = document.getElementsByTagName("input");
-                        for (var i = 1; i<=inputs.length; i++){
+                        for (var i = 0; i<=inputs.length; i++){
                             buttonName = "#"+i;
                             ($(buttonName).val(""));
                         }
@@ -132,33 +118,71 @@
                                 playerTurn = "O";
                             ($(param).val(playerTurn));
                             ($("#player").val(playerTurn));
-                            ($(param).disabled());
+                            
+                            //Informa qual é o próximo jogador.
+                            player = playerTurn;
+                            
+                            
+                            var value = param.replace("#", "");
+                            //alert(value);
+                            
+                            playerMove(value);
+                            
+                            debugValue();
+                            this.game[value] = playerTurn;
+                        
+                            // Verifica se já teve um ganhador, e informa quem foi.
+                            if (this.victory)
+                                this.endGame();
+                            
                         }
                     }
                     
-                    function debugValue(param, val){
-                        var valorJogador = 0;
-                        alert("parametro: " + param + " valor: " + val);
-                        var linha = [0, 0, 0];
-                        var coluna = [0, 0, 0];
-                        if (param < 4)
-                            linha = [param][val];
+                    /**
+                     * Verifica se é possível do jogador realizar a jogada.
+                     */
+                    function playerMove(id){
                         
-                        alert(linha);
+                        if (!this.game[id] && !this.victory) 
+                            this.game[id] = player;
+                }
                     
-                        var field = "#debug"+param;
-                        //alert("Linha: "+ linha + " coluna" + coluna);
-                    
-                        ($(field).val(val));
+                function hasWinner(){
+                    for (value in this.wins)
+                    {
+                        var search = this.wins[value];
+                        var found = this.game[search[0]] + this.game[search[1]] + this.game[search[2]];
+                                
+                        if (found == "XXX")
+                            return "X";
+                        else (found == "OOO")
+                        return "O";
+                                
                     }
+                }
                     
-                    function endGame(){
-                        if (this.victory == "Velha")
-                            ($("#player").val("Deu jogo da velha!"));
-                        else
-                            ($("#player").val("O jogador "+ ($("#player")).val() + " ganhou!"));
+                /**
+                 * Verifica se ainda é possível executar o jogo.
+                 */
+                function endGame(){
+                    if (this.victory == "Velha"){
+                        ($("#player").val("Deu jogo da velha!"));
+                        this.victory = true;
                     }
-                });
+                    else{
+                        ($("#player").val("O jogador "+ ($("#player")).val() + " ganhou!"));
+                        this.victory = true;
+                    }
+                }
+                    
+                /**
+                 *Faz o debug de valores:
+                 *
+                 */
+                function debugValue(){
+                    ($("#debug").val(game));
+                }
+            });
             
             </script>
         </form>

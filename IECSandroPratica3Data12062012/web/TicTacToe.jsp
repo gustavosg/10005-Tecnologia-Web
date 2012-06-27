@@ -150,17 +150,7 @@
                      * Check if there's a winner
                      */
                     function hasWinner(){
-                        // if every board field is checked, then its an old lady game (Tic Tac Toe!)
-                        var center = 0;
-                        for (s in this.game) {
-                            if (this.game[s]) 
-                                center+=1; 
-                        }
-                        if (center == 9) {
-                            return "Velha";
-                            checkEndGame();
-                        }
-                        
+                       
                         for (value in victoryTypes)
                         {
                             var search = this.victoryTypes[value];
@@ -178,6 +168,16 @@
                                 return "O";
                                 checkEndGame();
                             }
+                        }
+                         // if every board field is checked, then its an old lady game (Tic Tac Toe!)
+                        var center = 0;
+                        for (s in this.game) {
+                            if (this.game[s]) 
+                                center+=1; 
+                        }
+                        if (center == 9) {
+                            return "Velha";
+                            checkEndGame();
                         }
                     }
                     

@@ -34,8 +34,38 @@ http://www.phpied.com/3-ways-to-define-a-javascript-class/
                     // Setando um jogador:
                     player1 = new Player(1, "Gustavo", null, 0, 0);
                     //alert(player1.toString());
+                    // TODO Nomear as propriedades:
                     // Criando uma lista de propriedades:
-                    var properties = [];
+                    var properties = [
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7 },
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7},
+                        { id: 1, Name: Parque, Value: 1000, Rent: Value / 10, Sell: Value / 10 * 7}
+                        
+                        
+                    ];
                     // Setando cada Propriedade
                    
 //                   var list = [

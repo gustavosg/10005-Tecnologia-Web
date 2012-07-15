@@ -27,6 +27,23 @@ http://www.phpied.com/3-ways-to-define-a-javascript-class/
         <button id="doClick">Hello</button>
         <script type="text/javascript">
             $(document).ready(function(){
+                
+                var numPlayers = window.prompt("Quantos jogadores teremos? ", 4);
+                var jogador = [];
+                var player = [];
+                for (i = 1; i <= numPlayers; i++){
+                    jogador[i] = window.prompt("Digite o nome do " + i + "º Jogador:", "");
+                    
+                }
+                for (i = 1; i<= numPlayers; i++){
+                    player[i] = new Player(i, jogador[i] , null, 20000, 1);    
+                    window.alert("Jogador: " + player[i]);
+                }
+                
+                
+                
+                
+                
                 if ($("#doClick").click(
                 function(){
                     // Valor Randomico de 1 à 6
@@ -73,53 +90,48 @@ http://www.phpied.com/3-ways-to-define-a-javascript-class/
                         new Property(39,"Chance",0,0,0)
                     ];
             
-                    function Property(id, Name, Value, Rent, Sell){
-                        this.id = id;
-                        this.Name = Name;
-                        this.Value = Value;
-                        this.Rent = Value / Rent;
-                        this.Sell = Sell;
-                    }
+                  
+                    //alert(properties[random].Rent);
                     
-                    alert(properties[random].Rent);
-                    //($("#Random").val("Random: " + random)) ;
-                    //($("#Random").val(properties[random].Name)) ;
-                    //alert(properties[random].listProperties());
-                    // Setando um jogador:
-                    //player1 = new Player(1, "Gustavo", null, 0, 0);
-                    //alert(player1.toString());
-                    // TODO Nomear as propriedades:
-                    // Criando uma lista de propriedades:
-                
-                    // Setando cada Propriedade
-                   
-                    //                   var list = [
-                    //    { date: '12/1/2011', reading: 3, id: 20055),
-                    //    { date: '13/1/2011', reading: 5, id: 20053),
-                    //    { date: '14/1/2011', reading: 6, id: 45652 }
-                    //];
-
+                    
+                    
                     
                 })
             );
             });
             
             /**
-             * Teste
+             * Classe Property
+             * @description
              */
-          
-            //            
-            //            function Player(id, name, owner, money, position){
-            //                this.id = id;
-            //                this.name=name;
-            //                this.owner = owner;
-            //                this.money = money;
-            //                this.position = position;
-            //                this.toString = function(){
-            //                    return ("ID: " + id + "," + name + ", owner: "+ owner + ", money: "+ money + ", position: "+ position);
-            //                }
-            //                
-            //            }
+            function Property(id, Name, Value, Rent, Sell){
+                this.id = id;
+                this.Name = Name;
+                this.Value = Value;
+                this.Rent = Value / Rent;
+                this.Sell = Value / Sell;
+            }
+                    
+                    
+            /**
+             * Classe Player
+             * @description Cria um objeto jogador contendo:
+             * @constructor ID = Identificação do Jogador;
+             * @constructor Name = Nome do Jogador;
+             * @constructor Owner = Lista de objetos que o Jogador possui;
+             * @constructor Money = Dinheiro
+             * @constructor Position = Posição no tabuleiro
+             */
+            function Player(id, name, owner, money, position){
+                this.id = id;
+                this.name=name;
+                this.owner = [];
+                this.money = money;
+                this.position = position;
+                this.toString = function(){
+                    return ("ID: " + id + "," + name + ", owner: "+ owner + ", money: "+ money + ", position: "+ position);
+                }
+            }
 
             
         </script>

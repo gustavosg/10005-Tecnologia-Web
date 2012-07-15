@@ -33,11 +33,11 @@ http://www.phpied.com/3-ways-to-define-a-javascript-class/
                     var random = Math.ceil(Math.random()*39);
                     var properties = [
                         new Property(1, 'Início', 0, 0, 0 ),
-                        new Property(2,"Residêncial Gameleira",1000,10,10),
+                        new Property(2,"Residêncial Gameleira",1000,13,10),
                         new Property(3,"Lanchonete Davi",1000,10,10),
                         new Property(4,"Roubo do Governo",0,10,200),
-                        new Property(5,"Restaurante Almeida",1000,10,10),
-                        new Property(6,"Pousada Santo Descanso",1000,10,10),
+                        new Property(5,"Restaurante Almeida",1000,15,10),
+                        new Property(6,"Pousada Santo Descanso",1000,8,10),
                         new Property(7,"Cinema Soho",1000,10,10),
                         new Property(8,"Praça de Esportes Boa Saúde",1000,10,10),
                         new Property(9,"Chance",0,0,0),
@@ -45,12 +45,12 @@ http://www.phpied.com/3-ways-to-define-a-javascript-class/
                         new Property(11,"Prisão",0,0,0),
                         new Property(12,"Fina Decoração! Cama, Mesa e Banho",1000,10,10),
                         new Property(13,"Supermercado Preço bom",1000,10,10),
-                        new Property(14,"Madeireira Amazônica",1000,10,10),
+                        new Property(14,"Madeireira Amazônica",1000,2,10),
                         new Property(15,"Igreja do Santo Dízimo",1000,10,10 ),
                         new Property(16,"Chance",0,0,0),
                         new Property(17,"Cemig",1000,10,10),
                         new Property(18,"Hospital Mater Dei",1000,10,10),
-                        new Property(19,"Parque Hopi Hare",1000,10,10),
+                        new Property(19,"Parque Hopi Hare",1000,100,10),
                         new Property(20,"Paint Ball Camper free!",1000,10,10),
                         new Property(21,"Taxi",1000,10,10),
                         new Property(22,"Casa da Carne Boi Feliz",1000,10,10 ),
@@ -73,22 +73,15 @@ http://www.phpied.com/3-ways-to-define-a-javascript-class/
                         new Property(39,"Chance",0,0,0)
                     ];
             
-            
-                    function listProperties(){
-                         with (this) return ("id: " + id );
-                    }
-                    
                     function Property(id, Name, Value, Rent, Sell){
                         this.id = id;
                         this.Name = Name;
                         this.Value = Value;
-                        this.Rent = Rent;
+                        this.Rent = Value / Rent;
                         this.Sell = Sell;
-                        
                     }
-            
                     
-                    alert(properties[1].listProperties());
+                    alert(properties[random].Rent);
                     //($("#Random").val("Random: " + random)) ;
                     //($("#Random").val(properties[random].Name)) ;
                     //alert(properties[random].listProperties());

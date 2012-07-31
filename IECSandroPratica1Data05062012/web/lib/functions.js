@@ -34,21 +34,21 @@ function divideValores(){
 function validaCampos(){
 	var result = String.empty;
 	if (document.getElementById("Nome").value.toString() == "" )
-		 result = "Por favor, preencha seu nome! <br>";
+		 result = "Por favor, preencha seu nome! \n";
 		 else
-		 result = "Nome: "+document.getElementById("Nome").value+"<br>";
+		 result = "Nome: "+document.getElementById("Nome").value+" ";
 		 
 
 	if (document.getElementById("Endereco").value.toString() == "" )
-		result += document.getElementById("Texto").innerHTML = "Por favor, preencha seu endereco!<br> "	;
+		result += document.getElementById("Texto").innerHTML = "Por favor, preencha seu endereco!  \n"	;
 		else
-		 result += "Endereco: "+document.getElementById("Endereco").value+"<br>";
+		 result += "Endereco: "+document.getElementById("Endereco").value;
 	
 	if (document.getElementById("DataNasc").value.toString() == "" )
 		result += document.getElementById("Texto").innerHTML = "Por favor, preencha sua data de nascimento!"	;
 		else
-		 result += "DataNasc: "+document.getElementById("DataNasc").value+"<br>";
+		 result += "DataNasc: "+document.getElementById("DataNasc").value+" ";
 		
-		document.getElementById("Texto").innerHTML = result;
+		document.getElementById("Texto").value = result;
 		
 }
